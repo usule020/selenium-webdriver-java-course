@@ -23,4 +23,3 @@ jobs:
       - name: Run tests with maven
         working-directory: webdriver_java
         run: mvn test
-         # Handle remote server chromedriver
