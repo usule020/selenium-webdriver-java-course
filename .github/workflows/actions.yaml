@@ -20,6 +20,8 @@ jobs:
       HEADER_CHROME: true
 
     steps:
+      - name: set start time
+        run: echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
       - uses: actions/checkout@v2
       # install java
       - uses: actions/setup-java@v2
@@ -30,6 +32,9 @@ jobs:
       - name: Run tests with maven
         working-directory: webdriver_java
         run: mvn test
+        name: Collect build data
+        if: always()
+        run: expr $(date +%s) - ${START_TIME}
 
 
 
